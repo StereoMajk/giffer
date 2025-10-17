@@ -54,8 +54,8 @@ display_bus = FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.GP9)
 
 display = ST7789(display_bus, width=320, height=172, colstart=34, rotation=270)
 root = displayio.Group(scale=1,x=0,y=0)
-splash = displayio.Group(scale=3,x=35, y=60)
-text_group = displayio.Group(scale=2,x=35, y=44)
+splash = displayio.Group(scale=3,x=35, y=44)
+text_group = displayio.Group(scale=2,x=0, y=0)
 display.root_group = root
 
 files = get_files("gifs")
@@ -63,6 +63,8 @@ click_count = 0
 font = terminalio.FONT
 color = 0xFFFFFF
 text_area = label.Label(font, text=" "*10, color=color)
+text_area.anchor_point = (0.5,0.5)
+text_area.anchored_position = (160/2,15);
 text_group.append(text_area)
 root.insert(0,splash)
 root.insert(1,text_group)
